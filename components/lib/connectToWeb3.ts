@@ -23,6 +23,7 @@ export default (window) => {
     let currentAccount = null
     ethereum
         .send('eth_accounts')
+        // .request({ method: 'eth_requestAccounts' })
         .then(handleAccountsChanged)
         .catch((err) => {
             if (err.code === 4100) {
@@ -36,6 +37,7 @@ export default (window) => {
     ethereum.on('accountsChanged', handleAccountsChanged)
 
     function handleAccountsChanged(accounts) {
+        console.log(accounts, '???')
         if (accounts.length === 0) {
             // MetaMask is locked or the user has not connected any accounts
             console.log('Please connect to MetaMask.')

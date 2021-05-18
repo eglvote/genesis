@@ -18,7 +18,6 @@ interface NavBarProps {
     className?: string
     connectWeb3: connectWeb3Parameters
     walletAddress: string
-    eglBalance: string
 }
 
 export default function NavBar({
@@ -26,7 +25,6 @@ export default function NavBar({
     className,
     connectWeb3,
     walletAddress,
-    eglBalance,
 }: NavBarProps) {
     // let isPageWide = useMediaQuery('(min-width: 1100px)')
 
@@ -64,7 +62,7 @@ export default function NavBar({
             </NavbarLinkContainer>
             <div
                 className={
-                    'border flex justify-center items-center'
+                    'flex justify-center items-center'
                     // 'w-28 h-1/2 mt-auto mb-auto mr-8 flex justify-center items-center border-2 border-salmon rounded-xl'
                 }
             >

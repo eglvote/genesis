@@ -16,19 +16,27 @@ declare global {
     }
 }
 
-interface HomeProps {
+interface IndexProps {
     accounts: any
     web3Reader?: any
-    // contract: any
     web3: any
-    // token: any
 }
 
-const Home = ({ accounts, web3 }: HomeProps) => {
+const Index = ({ accounts, web3 }: IndexProps) => {
     const [modal, setModal] = useState(false)
-    // console.log(web3)
+    const [walletAddress, setWalletAddress] = useState(
+        accounts ? accounts[0] : null
+    )
+
+    window.ethereum.on('accountsChanged', (accounts) => {
+        setWalletAddress(accounts[0])
+    })
+
     return (
-        <>
+        <GenericPage
+            connectWeb3={() => connectToWeb3(window)}
+            walletAddress={walletAddress}
+        >
             <main className='flex flex-row h-screen bg-dark'>
                 <div style={{ width: '90%' }} className={''}>
                     <h1 className={'text-white text-5xl font-bold mt-16 ml-16'}>
@@ -51,37 +59,26 @@ const Home = ({ accounts, web3 }: HomeProps) => {
             {modal && (
                 <ParticipateModal handleOutsideClick={() => setModal(false)} />
             )}
-        </>
+        </GenericPage>
     )
 }
 
 export default () => (
     <Web3Container
         renderLoading={() => (
-            <GenericPage
-                connectWeb3={null}
-                walletAddress={null}
-                eglBalance={null}
-            >
+            <GenericPage connectWeb3={null} walletAddress={null}>
                 <div
                     style={{ animation: `fadeIn 1s` }}
                     className='fixed inset-0 z-30 bg-black opacity-25'
                 />
             </GenericPage>
         )}
-        render={({ web3, accounts, walletAddress }) => (
-            <GenericPage
-                connectWeb3={() => connectToWeb3(window)}
-                walletAddress={walletAddress}
-                eglBalance={'0'}
-            >
-                <Home
-                    accounts={accounts}
-                    // contract={contract}
-                    web3={web3}
-                    // token={token}
-                />
-            </GenericPage>
+        render={({ web3, accounts }) => (
+            <Index
+                accounts={accounts}
+                web3={web3}
+                // token={token}
+            />
         )}
     />
 )

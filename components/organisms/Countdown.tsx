@@ -48,7 +48,7 @@ export default function Countdown({
     }, [])
 
     return (
-        <div style={style} className={`${className} w-96 flex flex-row `}>
+        <div style={style} className={`${className} w-96 flex flex-row`}>
             <Digit className={'ml-0'} num={days} label={'days'} />
             <Digit num={hours} label={'hours'} />
             <Digit num={minutes} label={'minutes'} />

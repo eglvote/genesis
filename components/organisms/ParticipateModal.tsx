@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from '../atoms/Modal'
 import Button from '../atoms/Button'
 import clsx from 'clsx'
+
 interface handleOutsideClickParameters {
     (): void
 }

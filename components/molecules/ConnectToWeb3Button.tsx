@@ -25,10 +25,8 @@ const Button = ({ className, handleClicked, children }: ButtonProps) => {
         <button
             className={clsx(
                 className,
-                'rounded-xl w-52 h-12 bg-white border',
-                'shadow hover:bg-gray-100 font-bold',
-                ' text-center px-4 py-2 transition duration-500',
-                'ease select-none focus:outline-none focus:shadow-outline'
+                'rounded-xl w-52 h-12 mr-4 font-semibold',
+                'text-center px-4 py-2 transition duration-500'
             )}
             onClick={handleClicked}
         >
@@ -54,30 +52,32 @@ export default function ConnectToWeb3Button({
         if (walletAddress) {
             return (
                 <Button handleClicked={handleSetClicked}>
-                    <div
-                        className={'flex items-center justify-center'}
-                        style={{ animation: `fadeIn 1s` }}
-                    >
-                        <p className={'mr-2 font-semibold text-black'}>
-                            {truncateEthAddress(walletAddress)}
-                        </p>
+                    <div className={'flex items-center justify-center'}>
                         <Jazzicon
                             diameter={20}
                             seed={jsNumberForAddress(walletAddress)}
                         />
+                        <p className={'ml-2 font-semibold text-white'}>
+                            {truncateEthAddress(walletAddress)}
+                        </p>
                     </div>
                 </Button>
             )
         } else {
             return (
-                <Button handleClicked={connectWeb3}>
-                    <p>Connect Wallet</p>
+                <Button
+                    className={'border-2 border-salmon hover:bg-gray-50'}
+                    handleClicked={connectWeb3}
+                >
+                    <p className={'text-salmon font-semibold'}>
+                        Connect Wallet
+                    </p>
                 </Button>
             )
         }
     } else {
         return (
-            <Button className={'shadow-none'}>
+            <Button className={'text-white'}>
                 <p className={'mt-1'}>Copied!</p>
             </Button>
         )

@@ -1,8 +1,6 @@
 import React from 'react'
 import NavBar from '../organisms/Navbar'
-// import NavBarLink from '../organisms/NavBar/NavBarLink'
 import Head from 'next/head'
-// import Footer from '../organisms/Footer'
 
 interface connectWeb3Parameters {
     (): void
@@ -14,7 +12,6 @@ interface GenericPageTemplateProps {
     children?: JSX.Element[] | JSX.Element
     connectWeb3: connectWeb3Parameters
     walletAddress: string
-    eglBalance: string
 }
 
 export default function GenericPage({
@@ -23,7 +20,6 @@ export default function GenericPage({
     children,
     connectWeb3 = () => {},
     walletAddress,
-    eglBalance,
 }: GenericPageTemplateProps) {
     return (
         <>
@@ -34,10 +30,8 @@ export default function GenericPage({
                 <NavBar
                     connectWeb3={connectWeb3}
                     walletAddress={walletAddress}
-                    eglBalance={eglBalance}
                 />
                 <div className={'mt-20 h-full'}>{children}</div>
-                {/* <Footer /> */}
             </div>
         </>
     )
