@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from '../atoms/Modal'
 import Button from '../atoms/Button'
-
+import clsx from 'clsx'
 interface handleOutsideClickParameters {
     (): void
 }
@@ -27,9 +27,11 @@ export default function ParticipateModal({
         >
             <form className={'flex flex-col justify-center items-center'}>
                 <h1
-                    className={
-                        'w-full text-4xl text-center text-semibold inline-block font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink to-pink-dark'
-                    }
+                    className={clsx(
+                        'w-full text-4xl text-center text-semibold',
+                        'inline-block font-bold bg-clip-text text-transparent',
+                        'bg-gradient-to-r from-pink to-pink-dark'
+                    )}
                 >
                     {'Amount'}
                 </h1>

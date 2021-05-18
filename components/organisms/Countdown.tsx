@@ -22,6 +22,7 @@ const Digit = ({ num, label, className }: DigitProps) => (
         <div className={'text-[#C0C0C0] text-xl'}>{label}</div>
     </div>
 )
+
 export default function Countdown({
     style,
     className,

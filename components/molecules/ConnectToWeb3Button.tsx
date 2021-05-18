@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { truncateEthAddress } from '../lib/helpers'
 import copy from 'copy-to-clipboard'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
+import clsx from 'clsx'
 
 interface ConnectWeb3Parameters {
     (): void
@@ -22,7 +23,13 @@ interface ButtonProps {
 const Button = ({ className, handleClicked, children }: ButtonProps) => {
     return (
         <button
-            className={`${className} rounded-xl w-52 h-12 bg-white border shadow hover:bg-gray-100 font-bold text-center px-4 py-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline`}
+            className={clsx(
+                className,
+                'rounded-xl w-52 h-12 bg-white border',
+                'shadow hover:bg-gray-100 font-bold',
+                ' text-center px-4 py-2 transition duration-500',
+                'ease select-none focus:outline-none focus:shadow-outline'
+            )}
             onClick={handleClicked}
         >
             {children}

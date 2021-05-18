@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 import Button from '../atoms/Button'
 
@@ -18,9 +19,10 @@ export default function TotalStaked({
         <div className={`${className} flex flex-row`}>
             <div style={style} className={'text-white'}>
                 <p
-                    className={
-                        'text-2xl text-semibold w-auto inline-block font-bold bg-clip-text text-transparent2'
-                    }
+                    className={clsx(
+                        'text-2xl text-semibold w-auto inline-blockfont-bold',
+                        'bg-clip-text text-transparent bg-gradient-to-r from-pink to-pink-dark'
+                    )}
                 >
                     {'###,###,###'}
                 </p>

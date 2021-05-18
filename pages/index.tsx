@@ -29,7 +29,7 @@ const Home = ({ accounts, web3 }: HomeProps) => {
     // console.log(web3)
     return (
         <>
-            <main className='flex bg-dark h-screen flex-row'>
+            <main className='flex flex-row h-screen bg-dark'>
                 <div style={{ width: '90%' }} className={''}>
                     <h1 className={'text-white text-5xl font-bold mt-16 ml-16'}>
                         $EGL Genesis.
@@ -65,7 +65,7 @@ export default () => (
             >
                 <div
                     style={{ animation: `fadeIn 1s` }}
-                    className='opacity-25 fixed inset-0 z-30 bg-black'
+                    className='fixed inset-0 z-30 bg-black opacity-25'
                 />
             </GenericPage>
         )}

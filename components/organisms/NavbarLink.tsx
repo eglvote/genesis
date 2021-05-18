@@ -22,7 +22,7 @@ export default function NavbarLink({
         <Link href={`/${name}`}>
             <div
                 className={
-                    'flex flex-col items-center justify-top  cursor-pointer h-full hover:opacity-50'
+                    'flex flex-col items-center justify-top cursor-pointer h-full hover:opacity-50'
                 }
             >
                 <a
