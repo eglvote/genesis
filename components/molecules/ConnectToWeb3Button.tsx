@@ -25,7 +25,7 @@ const Button = ({ className, handleClicked, children }: ButtonProps) => {
         <button
             className={clsx(
                 className,
-                'rounded-xl w-52 h-12 mr-4 font-semibold',
+                'rounded-xl w-52 h-12 mr-4 font-semibold hover:opacity-50',
                 'text-center px-4 py-2 transition duration-500'
             )}
             onClick={handleClicked}
@@ -66,7 +66,7 @@ export default function ConnectToWeb3Button({
         } else {
             return (
                 <Button
-                    className={'border-2 border-salmon hover:bg-gray-50'}
+                    className={'border-2 border-salmon'}
                     handleClicked={connectWeb3}
                 >
                     <p className={'text-salmon font-semibold'}>

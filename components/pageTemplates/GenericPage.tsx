@@ -24,7 +24,7 @@ export default function GenericPage({
     return (
         <>
             <Head>
-                <link rel='icon' sizes='32x32' href='/static/Logomark.svg' />
+                <link rel='icon' sizes='32x32' href='egl.svg' />
             </Head>
             <div style={style} className={`${className}`}>
                 <NavBar

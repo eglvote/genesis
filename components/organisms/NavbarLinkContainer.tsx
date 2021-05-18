@@ -14,7 +14,7 @@ export default function NavBarLinkContainer({
     return (
         <div
             style={style}
-            className={`${className} flex w-full justify-center items-center mr-4 my-3`}
+            className={`${className} flex w-full justify-center`}
         >
             {children}
         </div>

@@ -19,7 +19,8 @@ export default function NavbarLink({
         (name === 'Genesis' && router.pathname.includes('/'))
 
     return (
-        <Link href={`/${name}`}>
+        // <Link href={`/${name}`}>
+        <Link href={'/'}>
             <div
                 className={
                     'flex flex-col items-center justify-top cursor-pointer h-full hover:opacity-50'

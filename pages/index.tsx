@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import Head from 'next/head'
 import GenericPage from '../components/pageTemplates/GenericPage'
 import BodyHeader from '../components/molecules/BodyHeader'
@@ -9,6 +8,7 @@ import TotalStaked from '../components/molecules/TotalStaked'
 import ParticipateModal from '../components/organisms/ParticipateModal'
 import Web3Container from '../components/lib/Web3Container'
 import connectToWeb3 from '../components/lib/connectToWeb3'
+import useMediaQuery from '../components/hooks/UseMediaQuery'
 
 declare global {
     interface Window {
@@ -27,6 +27,7 @@ const Index = ({ accounts, web3 }: IndexProps) => {
     const [walletAddress, setWalletAddress] = useState(
         accounts ? accounts[0] : null
     )
+    let isPageWide = useMediaQuery('(min-width: 800px)')
 
     window.ethereum.on('accountsChanged', (accounts) => {
         setWalletAddress(accounts[0])
@@ -37,12 +38,18 @@ const Index = ({ accounts, web3 }: IndexProps) => {
             connectWeb3={() => connectToWeb3(window)}
             walletAddress={walletAddress}
         >
-            <main className='flex flex-row h-screen bg-dark'>
+            <main
+                style={{
+                    height: isPageWide ? '100vh' : '105vh',
+                    width: isPageWide ? '100%' : '115vw',
+                }}
+                className='flex flex-row bg-dark'
+            >
                 <div style={{ width: '90%' }} className={''}>
                     <h1 className={'text-white text-5xl font-bold mt-16 ml-16'}>
                         $EGL Genesis.
                     </h1>
-                    <BodyHeader className={'ml-20 '} />
+                    <BodyHeader className={'ml-20'} />
                     <Countdown className={'ml-20 mt-16'} />
                     <TotalStaked
                         onClickJoin={() => setModal(true)}
@@ -53,7 +60,7 @@ const Index = ({ accounts, web3 }: IndexProps) => {
                     style={{ width: '10%' }}
                     className={'flex justify-center items-center'}
                 >
-                    <SideFooter />
+                    {isPageWide && <SideFooter />}
                 </div>
             </main>
             {modal && (

@@ -35,7 +35,7 @@ export default function Countdown({
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const end = 1627986278
+            const end = 1621971310
             const now = m().unix()
             const timeLeft = m.unix(end - now)
 
