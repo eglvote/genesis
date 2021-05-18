@@ -1,0 +1,32 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-gradient {
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blur {
+    backdrop-filter: blur(5px);
+}
+
+.smallCaps {
+    font-variant: small-caps;
+}
+
+.maxHeight {
+    max-height: calc(100vh - 60px);
+}
