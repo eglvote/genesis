@@ -19,7 +19,9 @@ const Img = ({ src, width }: ImgProps) => (
     />
 )
 
-const Line = () => <div className={'border-l-2 border-white h-1/4 mb-8'} />
+const Line = ({ className }) => (
+    <div className={`${className} border-l-2 border-white h-1/4`} />
+)
 
 export default function SideFooter({
     style,
@@ -31,7 +33,7 @@ export default function SideFooter({
             style={style}
             className={`${className} flex flex-col items-center justify-center h-full w-1/2 -mt-16`}
         >
-            <Line />
+            <Line className={'mb-8'} />
             <Img width={'35px'} src={'discord.svg'} />
             <Img src={'github.svg'} />
             <h1
@@ -47,7 +49,7 @@ export default function SideFooter({
             </h1>
             <Img src={'medium.svg'} />
             <Img src={'twitter.svg'} />
-            <Line />
+            <Line className={'mt-8'} />
         </div>
     )
 }
