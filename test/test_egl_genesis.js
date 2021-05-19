@@ -284,6 +284,16 @@ contract("EglGenesisTests", (accounts) => {
                 "Pausable: paused"
             );
         });
+        it("should not allow withdraw if max threshold reached ", async () => {
+            await eglGenesisInstance.sendTransaction({
+                from: _contributor1,                
+                value: web3.utils.toWei("10")
+            });
+            await expectRevert(
+                eglGenesisInstance.allowWithdraw({ from: _owner }),
+                "GENESIS:MAX_THRESHOLD_REACHED"
+            );
+        });
     });
     describe("End Genesis", function () {
         it("should allow owner to end genesis", async () => {

@@ -133,6 +133,7 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
      * @dev Owner only function to set the withdraw flag to 'true'
      */
     function allowWithdraw() public onlyOwner whenNotPaused {
+        require(cumulativeBalance < maxThreshold, "GENESIS:MAX_THRESHOLD_REACHED");
         require(canContribute, "GENESIS:GENESIS_ENDED");
         canWithdraw = true;
         canContribute = false;
