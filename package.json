@@ -1,28 +1,34 @@
 {
-  "name": "with-tailwindcss",
-  "version": "0.1.0",
-  "private": true,
+  "name": "egl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "dev": "TAILWIND_MODE=watch NODE_ENV=development next dev",
-    "build": "next build",
-    "start": "next start"
+    "test": "truffle test --network ganache",
+    "compile": "truffle compile --all",
+    "mig-ganache": "truffle migrate --reset --network ganache",
+    "mig-ropsten": "truffle migrate --reset --network ropsten --skipDryRun",
+    "con-ganache": "truffle console --network ganache",
+    "con-ropsten": "truffle console --network ropsten",
+    "size": "truffle run contract-size"
   },
-  "dependencies": {
-    "@types/web3": "^1.2.2",
-    "clsx": "^1.1.1",
-    "copy-to-clipboard": "^3.3.1",
-    "moment": "^2.29.1",
-    "next": "latest",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-jazzicon": "^0.1.3",
-    "web3": "^1.3.6"
-  },
+  "author": "Shane van Coller",
+  "license": "MIT",
   "devDependencies": {
-    "@types/react": "^17.0.5",
-    "autoprefixer": "^10.0.4",
-    "postcss": "^8.1.10",
-    "tailwindcss": "^2.1.1",
-    "typescript": "^4.2.4"
+    "@openzeppelin/contracts-upgradeable": "^3.3.0",
+    "@openzeppelin/test-helpers": "^0.5.10",
+    "@openzeppelin/truffle-upgrades": "^1.5.0",
+    "@truffle/contract": "^4.3.5",
+    "@truffle/hdwallet-provider": "^1.2.1",
+    "@uniswap/v2-core": "^1.0.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "bn.js": "^5.1.3",
+    "dotenv": "^8.2.0",
+    "eth-gas-reporter": "^0.2.21",
+    "solhint": "^3.3.2",
+    "truffle-contract-size": "^2.0.1"
   }
 }

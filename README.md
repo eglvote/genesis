@@ -1,23 +1,43 @@
-# Next.js + Tailwind CSS Example
+![EGL Logo][logo]
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2.1) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+[![Build Status](https://travis-ci.com/bloXroute-Labs/egl.svg?token=7P16gQwBsynsaBwrjxuH&branch=develop)](https://travis-ci.com/bloXroute-Labs/egl)
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+# Smart Contracts
+## Prerequisites
++ Install [Node.js][node.js]
++ Install [yarn][yarn]: `npm install --global yarn`
++ Install [Truffle][truffle]: `yarn global add truffle`
++ Install [Ganache-cli][ganache-cli]: `yarn global add ganache-cli`
++ Install project dependencies: `yarn install`
 
-## Deploy your own
+[Truffle][truffle] and [Ganache][ganache] are required to compile, test and deploy the smart contracts. In order to connect to the public networks (Ropsten/Mainnet), truffle requires an endpoint of an Ethereum node to connect to in order to send transactions to. This can either be a synced local node (like geth) or more conveniently, an [Infura][infura] node with API key. The `truffle-config.js` is currently configured to connect to Infura but requires an API key in order to connect. This key, as well as the wallet mnemonic used for deployments, is configured in a `.env` file which you will need to create. It is not (and should not be) committed to source control. There is also a `COIN_MARKET_CAP_API_KEY` variable that is used by the gas reporter plugin. Set this to an empty string if you don't have a CoinMarketCap API key. 
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+The `.env` file should take the following format:
+```
+MAINNET_NODE_URL=https://mainnet.infura.io/v3/<YOUR_API_KEY>
+MAINNET_MNEMONIC="YOUR_MAINNET_MNEMONIC"
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+ROPSTEN_NODE_URL=https://ropsten.infura.io/v3/<YOUR_API_KEY>
+ROPSTEN_MNEMONIC="YOUR_ROPSTEN_MNEMONIC"
 
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+COIN_MARKET_CAP_API_KEY="YOUR_COIN_MARKET_CAP_API_KEY"
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Compiling, Deploying and Testing:
+**NOTE:** When using the ganache network, Ganache or Ganache-cli must be running before the commands below are executed.
++ Compile contracts: `yarn compile`  
++ Run tests against local Ganache: `yarn test`  
++ Deploy contracts to local Ganache: `yarn mig-ganache`  
++ Deploy contracts to Ropsten: `yarn mig-ropsten`
+
+## Interacting with Contracts from the console:
++ Start the console and connect to Ganache: `yarn con-ganache`  
++ Start the console and connect to Ropsten (requires Infura key configured in `.env`): `yarn con-ropsten`
+
+[logo]: assets/GithubBanner.svg
+[truffle]: https://www.trufflesuite.com/truffle
+[ganache]: https://www.trufflesuite.com/ganache
+[ganache-cli]: https://github.com/trufflesuite/ganache-cli/blob/master/README.md
+[infura]: https://infura.io/
+[node.js]: https://nodejs.org/en/download/
+[yarn]: https://yarnpkg.com/getting-started/install
