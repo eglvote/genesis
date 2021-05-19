@@ -1,6 +1,6 @@
 ![EGL Logo][logo]
 
-[![Build Status](https://travis-ci.com/bloXroute-Labs/egl.svg?token=7P16gQwBsynsaBwrjxuH&branch=develop)](https://travis-ci.com/bloXroute-Labs/egl)
+[![Build Status](https://travis-ci.com/bloXroute-Labs/egl_genesis.svg?token=7P16gQwBsynsaBwrjxuH&branch=master)](https://travis-ci.com/bloXroute-Labs/egl_genesis)
 
 # Smart Contracts
 ## Prerequisites

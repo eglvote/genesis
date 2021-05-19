@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - 12
+
+cache: yarn
+
+install:
+  - yarn global add truffle
+  - yarn global add ganache-cli
+  - yarn install
+
+script:
+  - ganache-cli -p 7545 -i 5777 > /dev/null &
+  - sleep 5
+  - yarn compile
+  - yarn mig-ganache
+  - yarn test
