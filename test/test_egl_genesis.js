@@ -351,7 +351,7 @@ contract("EglGenesisTests", (accounts) => {
             );
             assert.equal(
                 await eglGenesisInstance.cumulativeBalance(),
-                "0",
+                new BN(web3.utils.toWei("0.3")).toString(),
                 "Incorrect cumulative balance after end"
             );
         });

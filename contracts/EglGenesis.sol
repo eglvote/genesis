@@ -148,7 +148,6 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
         (bool success, ) = msg.sender.call{ value: cumulativeBalance}("");
         require(success, "GENESIS: CLOSE_FAILED");
         emit GenesisEnded(msg.sender, cumulativeBalance, address(this).balance, now);
-        cumulativeBalance = 0;
     }
 
     /**
