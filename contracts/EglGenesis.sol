@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
@@ -11,7 +11,7 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
     uint constant MIN_CONTRIBUTION_AMOUNT = 0.001 ether;
 
     uint public cumulativeBalance;
-    uint public contributorsCount;
+    uint public absoluteMaxContributorsCount;
     bool public canContribute;
     bool public canWithdraw;
     address[] public contributorsList;    
@@ -73,12 +73,12 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
 
         contributorsList.push(msg.sender);
         cumulativeBalance = cumulativeBalance.add(msg.value);
-        contributorsCount = contributorsCount.add(1);
+        absoluteMaxContributorsCount = absoluteMaxContributorsCount.add(1);
 
         Contributor storage contributor = contributors[msg.sender];
         contributor.amount = msg.value;
         contributor.cumulativeBalance = cumulativeBalance;
-        contributor.idx = contributorsCount;
+        contributor.idx = absoluteMaxContributorsCount;
         contributor.date = now;        
 
         if (cumulativeBalance >= maxThreshold) {
@@ -100,7 +100,10 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
      * @param _owner Address of wallet that will have administrative priviledges over the contract
      * @param _threshold Max amount of ETH to collect before automatically stopping collection
      */
-    function initialize(address _owner, uint _threshold) public initializer {
+    function initialize(address _owner, uint _threshold) external initializer {
+        require(_owner != address(0), "GENESIS:INVALID_OWNER");
+        require(_owner != address(this), "GENESIS:ADDRESS_IS_CONTRACT");
+
         __Context_init_unchained();
         __Ownable_init_unchained();
         __Pausable_init_unchained();
@@ -114,7 +117,7 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
     /**
      * @dev Withdraw ETH contributed only if contributed and withdraw flag is set to 'true'
      */
-    function withdraw() public whenNotPaused {
+    function withdraw() external whenNotPaused {
         require(canWithdraw, "GENESIS:WITHDRAW_NOT_ALLOWED");
         require(contributors[msg.sender].amount > 0, "GENESIS:NOT_CONTRIBUTED");
 
@@ -124,6 +127,7 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
         delete contributorsList[contributorIdx - 1];
         
         cumulativeBalance = cumulativeBalance.sub(amountToWithdraw);
+
         (bool success, ) = msg.sender.call{ value: amountToWithdraw}("");
         require(success, "GENESIS:WITHDRAW_FAILED");        
         emit ContributionWithdrawn(msg.sender, amountToWithdraw, now);
@@ -132,7 +136,8 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
     /**
      * @dev Owner only function to set the withdraw flag to 'true'
      */
-    function allowWithdraw() public onlyOwner whenNotPaused {
+    function allowWithdraw() external onlyOwner whenNotPaused {
+        require(cumulativeBalance > 0, "GENESIS:NO_BALANCE");
         require(cumulativeBalance < maxThreshold, "GENESIS:MAX_THRESHOLD_REACHED");
         require(canContribute, "GENESIS:GENESIS_ENDED");
         canWithdraw = true;
@@ -143,7 +148,7 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
     /** 
      * @dev End genesis period and transfer contract balance to owner wallet
      */
-    function endGenesis() public onlyOwner whenNotPaused {
+    function endGenesis() external onlyOwner whenNotPaused {
         canContribute = false;
         (bool success, ) = msg.sender.call{ value: cumulativeBalance}("");
         require(success, "GENESIS: CLOSE_FAILED");
@@ -153,14 +158,21 @@ contract EglGenesis is Initializable, OwnableUpgradeable, PausableUpgradeable {
     /**
      * @dev Ower only funciton to pause contract
      */
-    function pauseGenesis() public onlyOwner whenNotPaused {
+    function pauseGenesis() external onlyOwner whenNotPaused {
         _pause();
     }
 
     /** 
      * @dev Owner only function to unpause contract
      */
-    function unpauseGenesis() public onlyOwner whenPaused {
+    function unpauseGenesis() external onlyOwner whenPaused {
         _unpause();
+    }
+
+    /**
+     * @dev Do not allow owner to renounce ownership, only transferOwnership
+     */
+    function renounceOwnership() public override onlyOwner {
+        revert("GENESIS:NO_RENOUNCE_OWNERSHIP");
     }
 }

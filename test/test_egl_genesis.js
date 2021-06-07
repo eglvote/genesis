@@ -43,6 +43,26 @@ contract("EglGenesisTests", (accounts) => {
                 "Incorrect max threshold"
             )
         });
+        it("should not be able to initialize owner with 0 address", async () => {
+            eglGenesisInstance = await EglGenesis.new();
+            await expectRevert(
+                 eglGenesisInstance.initialize(
+                    "0x0000000000000000000000000000000000000000", 
+                    new BN(web3.utils.toWei("10"))
+                ),
+                "GENESIS:INVALID_OWNER"
+            );
+        });
+        it("should not be able to initialize owner with contract address", async () => {
+            eglGenesisInstance = await EglGenesis.new();
+            await expectRevert(
+                 eglGenesisInstance.initialize(
+                    eglGenesisInstance.address, 
+                    new BN(web3.utils.toWei("10"))
+                ),
+                "GENESIS:ADDRESS_IS_CONTRACT"
+            );
+        });
     });
     describe("Receive ETH Contributions", function () {
         it("should receive ETH contribution", async () => {
@@ -55,17 +75,22 @@ contract("EglGenesisTests", (accounts) => {
                 contribution.amount.toString(),
                 new BN(web3.utils.toWei("0.1")).toString(),
                 "Incorrect contribution amount stored"
-            )
+            );
             assert.equal(
                 contribution.cumulativeBalance.toString(),
                 new BN(web3.utils.toWei("0.1")).toString(),
                 "Incorrect cumulative balance stored"
-            )
+            );
             assert.equal(
                 contribution.idx.toString(),
                 "1",
                 "Incorrect idx stored"
-            )
+            );
+            assert.equal(
+                await eglGenesisInstance.absoluteMaxContributorsCount(), 
+                "1", 
+                "Incorrect contributors count"
+            );
         });
         it("should receive multiple ETH contributions", async () => {
             let contributors = {};
@@ -100,6 +125,11 @@ contract("EglGenesisTests", (accounts) => {
                     "Incorrect idx stored"
                 )            
             }
+            assert.equal(
+                await eglGenesisInstance.absoluteMaxContributorsCount(),
+                "3",
+                "Incorrect max contributor count"
+            );
         });
         it("should not allow multiple ETH contributions from the same account", async () => {
             eglGenesisInstance.sendTransaction({
@@ -189,7 +219,12 @@ contract("EglGenesisTests", (accounts) => {
             );
         });
         it("should not be able to withdraw ETH if not contributed", async () => {
+            await eglGenesisInstance.sendTransaction({
+                from: _contributor1,                
+                value: web3.utils.toWei("0.1")
+            });
             await eglGenesisInstance.allowWithdraw({ from: _owner });
+            
             await expectRevert(
                 eglGenesisInstance.withdraw({
                     from: _contributor2
@@ -406,6 +441,11 @@ contract("EglGenesisTests", (accounts) => {
     });
     describe("Allow Withdraw", function () {
         it("should allow owner to set withdraw flag", async () => {
+            await eglGenesisInstance.sendTransaction({
+                from: _contributor1,                
+                value: web3.utils.toWei("0.1")
+            });
+
             assert.equal(
                 await eglGenesisInstance.canWithdraw(), 
                 false, 
@@ -429,15 +469,22 @@ contract("EglGenesisTests", (accounts) => {
                 "Should not be able to contribute"
             );
         });
-        it("should not allow non owner to pause contract", async () => {
+        it("should not allow setting withdraw flag when contract balance is 0", async () => {
+            await assert.equal(await web3.eth.getBalance(eglGenesisInstance.address), "0", "Contract balance should be 0")
+            await eglGenesisInstance.endGenesis({ from: _owner });
+
             await expectRevert(
                 eglGenesisInstance.allowWithdraw({
-                    from: _contributor1
+                    from: _owner
                 }),
-                "Ownable: caller is not the owner"
+                "GENESIS:NO_BALANCE"
             );
         });
         it("should not allow setting withdraw flag when genesis ended", async () => {
+            await eglGenesisInstance.sendTransaction({
+                from: _contributor1,                
+                value: web3.utils.toWei("0.1")
+            });
             await eglGenesisInstance.endGenesis({ from: _owner });
 
             await expectRevert(
@@ -445,6 +492,24 @@ contract("EglGenesisTests", (accounts) => {
                     from: _owner
                 }),
                 "GENESIS:GENESIS_ENDED"
+            );
+        });
+    });
+    describe("Renounce Ownership", function() {
+        it("should revert if trying to renounce ownership", async () => {
+            await expectRevert(
+                eglGenesisInstance.renounceOwnership({
+                    from: _owner
+                }),
+                "GENESIS:NO_RENOUNCE_OWNERSHIP"
+            );
+        });
+        it("should not allow non owner to call function", async () => {
+            await expectRevert(
+                eglGenesisInstance.renounceOwnership({
+                    from: _contributor1
+                }),
+                "Ownable: caller is not the owner"
             );
         });
     });

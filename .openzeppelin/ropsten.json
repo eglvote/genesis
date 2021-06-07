@@ -1,0 +1,152 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x84Ab455FCCEb1b03c373355664793026C912Df1a",
+    "txHash": "0x936d9327050433012b84f114087f3b53c1764d56982d4d9a16c5c9c46ac93c3c"
+  },
+  "proxies": [
+    {
+      "address": "0xAd8875793be0De7BB65654771f56d3A2d3C9BFb6",
+      "txHash": "0xdf7eabfe7849547d78ae19bfbfa9d3036fd263249a9188d3497a859de3cd20db",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "d8cea39153da982a56442038ab772e4c371701511cf07f229e795f9202472039": {
+      "address": "0x54d094d12be58A16C3ea2B1ecFE9D774a3B553f5",
+      "txHash": "0xf3eee76cd9e455cba4436c2a23531b5d9d48207f5506950c65292e10390bf9ed",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
+          },
+          {
+            "contract": "PausableUpgradeable",
+            "label": "_paused",
+            "type": "t_bool",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol:28"
+          },
+          {
+            "contract": "PausableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "../@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol:96"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "cumulativeBalance",
+            "type": "t_uint256",
+            "src": "EglGenesis.sol:13"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "contributorsCount",
+            "type": "t_uint256",
+            "src": "EglGenesis.sol:14"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "canContribute",
+            "type": "t_bool",
+            "src": "EglGenesis.sol:15"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "canWithdraw",
+            "type": "t_bool",
+            "src": "EglGenesis.sol:16"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "contributorsList",
+            "type": "t_array(t_address)dyn_storage",
+            "src": "EglGenesis.sol:17"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "contributors",
+            "type": "t_mapping(t_address,t_struct(Contributor)43_storage)",
+            "src": "EglGenesis.sol:18"
+          },
+          {
+            "contract": "EglGenesis",
+            "label": "maxThreshold",
+            "type": "t_uint256",
+            "src": "EglGenesis.sol:20"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_struct(Contributor)43_storage)": {
+            "label": "mapping(address => struct EglGenesis.Contributor)"
+          },
+          "t_struct(Contributor)43_storage": {
+            "label": "struct EglGenesis.Contributor",
+            "members": [
+              {
+                "label": "amount",
+                "type": "t_uint256"
+              },
+              {
+                "label": "cumulativeBalance",
+                "type": "t_uint256"
+              },
+              {
+                "label": "idx",
+                "type": "t_uint256"
+              },
+              {
+                "label": "date",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    }
+  }
+}
