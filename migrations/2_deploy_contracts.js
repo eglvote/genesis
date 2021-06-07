@@ -12,17 +12,30 @@ const ConsoleColors = {
 }
 
 module.exports = async function (deployer, network, accounts) {
-  let multisigAddress = "0x856Aa6Dd22Bf637ea534219B352fcCb4012c8F25";
+  let genesisOwner = "";
+  let newProxyAdmin = "";
+  let threshold = "";
+
+  if (network === "mainnet") {
+    throw "Check Contract Arguments!"
+    genesisOwner = "";
+    newProxyAdmin = "";
+    threshold = web3.utils.toWei("0");
+  }
   if (network === "ropsten") {
-    multisigAddress = accounts[0];
+    genesisOwner = accounts[0];
+    newProxyAdmin = accounts[9];
+    threshold = web3.utils.toWei("5");
   }
   if (network === "ganache") {
-    multisigAddress = accounts[0];
+    genesisOwner = accounts[0];
+    newProxyAdmin = accounts[9];
+    threshold = web3.utils.toWei("10");
   }
 
   let genesisContract = await deployProxy(
     EglGenesis, 
-    [multisigAddress, web3.utils.toWei("10")], 
+    [genesisOwner, threshold], 
     { deployer }
   );
   console.log(
@@ -30,10 +43,9 @@ module.exports = async function (deployer, network, accounts) {
     genesisContract.address
   );
 
-  // TODO: Ensure multisig address can call relevant function to upgrade contracts
-  admin.changeProxyAdmin(genesisContract.address, multisigAddress);
+  admin.changeProxyAdmin(genesisContract.address, newProxyAdmin);
   console.log(
-    `EGL Genesis Contract admin set to: ${ConsoleColors.GREEN}`,
-    multisigAddress
+    `EGL Genesis Proxy Admin set to: ${ConsoleColors.GREEN}`,
+    newProxyAdmin
   );
 };
