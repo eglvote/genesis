@@ -31,11 +31,6 @@
       "kind": "transparent"
     },
     {
-      "address": "0x0B3074A4F9A4192C17f76964589202EbeaE15BC1",
-      "txHash": "0xf172f93521836775f20775a0362643abbeaa31488cdcc568bb09570dc8b0f1b0",
-      "kind": "transparent"
-    },
-    {
       "address": "0x021eCEcBeaB14E529fB1ae4522cfc4fbc5D4DE7B",
       "txHash": "0x9c74987c5c69ca5b8d4992fbb30342b319398481e0a9956bce29af471ffb01ea",
       "kind": "transparent"
@@ -113,6 +108,11 @@
     {
       "address": "0x7478E4f7bb9AFE1666270F535Fa0C4e251F050a8",
       "txHash": "0xc223652497e5fb702c511df0bbdb7d098dfd1387aa48836227f763c00f3c1e70",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x0B3074A4F9A4192C17f76964589202EbeaE15BC1",
+      "txHash": "0xf172f93521836775f20775a0362643abbeaa31488cdcc568bb09570dc8b0f1b0",
       "kind": "transparent"
     }
   ],
@@ -253,145 +253,9 @@
         }
       }
     },
-    "3d2927624f6a76c6bef41dcbc52c43dde5cdbb3f36edf7e21b71fd4f9631ef9c": {
-      "address": "0xf9aeEEB8c03f9CaeBdDa6D7388318021126B1473",
-      "txHash": "0x48e3b6bae22385a821a628b5225149889e11a52e90c69cbed26f83360da6a1d1",
-      "layout": {
-        "storage": [
-          {
-            "contract": "Initializable",
-            "label": "_initialized",
-            "type": "t_bool",
-            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:25"
-          },
-          {
-            "contract": "Initializable",
-            "label": "_initializing",
-            "type": "t_bool",
-            "src": "../@openzeppelin/contracts-upgradeable/proxy/Initializable.sol:30"
-          },
-          {
-            "contract": "ContextUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)50_storage",
-            "src": "../@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:31"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "_owner",
-            "type": "t_address",
-            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:20"
-          },
-          {
-            "contract": "OwnableUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)49_storage",
-            "src": "../@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:74"
-          },
-          {
-            "contract": "PausableUpgradeable",
-            "label": "_paused",
-            "type": "t_bool",
-            "src": "../@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol:28"
-          },
-          {
-            "contract": "PausableUpgradeable",
-            "label": "__gap",
-            "type": "t_array(t_uint256)49_storage",
-            "src": "../@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol:96"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "cumulativeBalance",
-            "type": "t_uint256",
-            "src": "EglGenesis.sol:13"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "contributorsCount",
-            "type": "t_uint256",
-            "src": "EglGenesis.sol:14"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "canContribute",
-            "type": "t_bool",
-            "src": "EglGenesis.sol:15"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "canWithdraw",
-            "type": "t_bool",
-            "src": "EglGenesis.sol:16"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "contributorsList",
-            "type": "t_array(t_address)dyn_storage",
-            "src": "EglGenesis.sol:17"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "contributors",
-            "type": "t_mapping(t_address,t_struct(Contributor)43_storage)",
-            "src": "EglGenesis.sol:18"
-          },
-          {
-            "contract": "EglGenesis",
-            "label": "maxThreshold",
-            "type": "t_uint256",
-            "src": "EglGenesis.sol:20"
-          }
-        ],
-        "types": {
-          "t_uint256": {
-            "label": "uint256"
-          },
-          "t_bool": {
-            "label": "bool"
-          },
-          "t_array(t_address)dyn_storage": {
-            "label": "address[]"
-          },
-          "t_address": {
-            "label": "address"
-          },
-          "t_mapping(t_address,t_struct(Contributor)43_storage)": {
-            "label": "mapping(address => struct EglGenesis.Contributor)"
-          },
-          "t_struct(Contributor)43_storage": {
-            "label": "struct EglGenesis.Contributor",
-            "members": [
-              {
-                "label": "amount",
-                "type": "t_uint256"
-              },
-              {
-                "label": "cumulativeBalance",
-                "type": "t_uint256"
-              },
-              {
-                "label": "idx",
-                "type": "t_uint256"
-              },
-              {
-                "label": "date",
-                "type": "t_uint256"
-              }
-            ]
-          },
-          "t_array(t_uint256)49_storage": {
-            "label": "uint256[49]"
-          },
-          "t_array(t_uint256)50_storage": {
-            "label": "uint256[50]"
-          }
-        }
-      }
-    },
     "1f794a632ca1bea566f007d0e658dd7a0b33e30d207ca5fcbd0824b6d63031ea": {
-      "address": "0x61E473Dfb41C6d46c9b45C925F1e4b30944Df848",
-      "txHash": "0x2ed38ced14857d14afb9895a22c9c65c98ce2d0e1fc4b04d5e35068e6a80abe8",
+      "address": "0xf9aeEEB8c03f9CaeBdDa6D7388318021126B1473",
+      "txHash": "0x7fbc2e0d9c4d0d144cc7a17176f96a2f3e5ab9cc238ff9a684af292d725d60d1",
       "layout": {
         "storage": [
           {

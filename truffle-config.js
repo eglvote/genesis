@@ -4,7 +4,7 @@ const path = require("path");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 module.exports = {
-  contracts_build_directory: path.join(__dirname, "client/lib/contracts"),
+  contracts_build_directory: path.join(__dirname, "build/contracts"),
   networks: {
     develop: {
       port: 8545,
