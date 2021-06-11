@@ -5,7 +5,7 @@ node_js:
 cache: yarn
 
 install:
-  - yarn global add truffle
+  - yarn global add truffle@v5.1.45
   - yarn global add ganache-cli
   - yarn install
 
