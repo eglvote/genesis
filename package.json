@@ -10,9 +10,14 @@
     "test": "truffle test --network ganache",
     "compile": "truffle compile --all",
     "mig-ganache": "truffle migrate --reset --network ganache",
-    "mig-ropsten": "truffle migrate --reset --network ropsten --skipDryRun",
+    "mig-ropsten": "truffle migrate --reset --network ropsten",
+    "mig-mainnet": "truffle migrate --network mainnet",
+    "ownership-ganache": "truffle migrate -f 3 --to 3 --reset --network ganache",
+    "ownership-ropsten": "truffle migrate -f 3 --to 3 --reset --network ropsten",
+    "ownership-mainnet": "truffle migrate -f 3 --to 3 --network mainnet",
     "con-ganache": "truffle console --network ganache",
     "con-ropsten": "truffle console --network ropsten",
+    "con-mainnet": "truffle console --network mainnet",
     "size": "truffle run contract-size"
   },
   "author": "Shane van Coller",
@@ -29,6 +34,7 @@
     "dotenv": "^8.2.0",
     "eth-gas-reporter": "^0.2.21",
     "solhint": "^3.3.2",
-    "truffle-contract-size": "^2.0.1"
+    "truffle-contract-size": "^2.0.1",
+    "truffle-plugin-verify": "^0.5.11"
   }
 }

@@ -1,20 +1,20 @@
 {
   "manifestVersion": "3.2",
   "admin": {
-    "address": "0x84Ab455FCCEb1b03c373355664793026C912Df1a",
-    "txHash": "0x936d9327050433012b84f114087f3b53c1764d56982d4d9a16c5c9c46ac93c3c"
+    "address": "0x4E32c32EA41A5B1270853bda361186e1E26296BF",
+    "txHash": "0xb26e1bac11d0134b8656ef760d80b1d9c55ffd2729091cbc5d00bae4fa3244e9"
   },
   "proxies": [
     {
-      "address": "0xAd8875793be0De7BB65654771f56d3A2d3C9BFb6",
-      "txHash": "0xdf7eabfe7849547d78ae19bfbfa9d3036fd263249a9188d3497a859de3cd20db",
+      "address": "0x21Df223E4cc9F270383e33BCdDBc25F27cf7aE96",
+      "txHash": "0x20d720ff41983a74cc2759bf5d5bb2e763e4031216757a324b2f81dcd90665ae",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "d8cea39153da982a56442038ab772e4c371701511cf07f229e795f9202472039": {
-      "address": "0x54d094d12be58A16C3ea2B1ecFE9D774a3B553f5",
-      "txHash": "0xf3eee76cd9e455cba4436c2a23531b5d9d48207f5506950c65292e10390bf9ed",
+    "1f794a632ca1bea566f007d0e658dd7a0b33e30d207ca5fcbd0824b6d63031ea": {
+      "address": "0x786EA04426538A4837463B7ba8E2b6725143D391",
+      "txHash": "0x2e90fe46e12b390de44ec020c49b0c005e276be94f1aabd757021168a257963f",
       "layout": {
         "storage": [
           {
@@ -63,43 +63,43 @@
             "contract": "EglGenesis",
             "label": "cumulativeBalance",
             "type": "t_uint256",
-            "src": "EglGenesis.sol:13"
+            "src": "EglGenesis.sol:42"
           },
           {
             "contract": "EglGenesis",
-            "label": "contributorsCount",
+            "label": "absoluteMaxContributorsCount",
             "type": "t_uint256",
-            "src": "EglGenesis.sol:14"
+            "src": "EglGenesis.sol:43"
           },
           {
             "contract": "EglGenesis",
             "label": "canContribute",
             "type": "t_bool",
-            "src": "EglGenesis.sol:15"
+            "src": "EglGenesis.sol:44"
           },
           {
             "contract": "EglGenesis",
             "label": "canWithdraw",
             "type": "t_bool",
-            "src": "EglGenesis.sol:16"
+            "src": "EglGenesis.sol:45"
           },
           {
             "contract": "EglGenesis",
             "label": "contributorsList",
             "type": "t_array(t_address)dyn_storage",
-            "src": "EglGenesis.sol:17"
+            "src": "EglGenesis.sol:46"
           },
           {
             "contract": "EglGenesis",
             "label": "contributors",
-            "type": "t_mapping(t_address,t_struct(Contributor)43_storage)",
-            "src": "EglGenesis.sol:18"
+            "type": "t_mapping(t_address,t_struct(Contributor)44_storage)",
+            "src": "EglGenesis.sol:47"
           },
           {
             "contract": "EglGenesis",
             "label": "maxThreshold",
             "type": "t_uint256",
-            "src": "EglGenesis.sol:20"
+            "src": "EglGenesis.sol:49"
           }
         ],
         "types": {
@@ -115,10 +115,10 @@
           "t_address": {
             "label": "address"
           },
-          "t_mapping(t_address,t_struct(Contributor)43_storage)": {
+          "t_mapping(t_address,t_struct(Contributor)44_storage)": {
             "label": "mapping(address => struct EglGenesis.Contributor)"
           },
-          "t_struct(Contributor)43_storage": {
+          "t_struct(Contributor)44_storage": {
             "label": "struct EglGenesis.Contributor",
             "members": [
               {

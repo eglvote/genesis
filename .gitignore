@@ -11,3 +11,7 @@ node_modules
 
 # file history
 .history
+
+# openzeppelin proxy information - only commit mainnet info
+.openzeppelin
+!.openzeppelin/mainnet.json
