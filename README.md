@@ -1,6 +1,6 @@
 ![EGL Logo][logo]
 
-[![Build Status](https://travis-ci.com/bloXroute-Labs/egl_genesis.svg?token=7P16gQwBsynsaBwrjxuH&branch=master)](https://travis-ci.com/bloXroute-Labs/egl_genesis)
+[![Build Status](https://travis-ci.com/eglvote/genesis.svg?branch=master)](https://travis-ci.com/github/eglvote/genesis)
 
 # EGL Staking Notice
 By agreeing to stake Ethereum:
@@ -25,7 +25,11 @@ By staking Ethereum or accessing or otherwise using this smart contract, you agr
 + Install [Ganache-cli][ganache-cli]: `yarn global add ganache-cli`
 + Install project dependencies: `yarn install`
 
-[Truffle][truffle] and [Ganache][ganache] are required to compile, test and deploy the smart contracts. In order to connect to the public networks (Ropsten/Mainnet), truffle requires an endpoint of an Ethereum node to connect to in order to send transactions to. This can either be a synced local node (like geth) or more conveniently, an [Infura][infura] node with API key. The `truffle-config.js` is currently configured to connect to Infura but requires an API key in order to connect. This key, as well as the wallet mnemonic used for deployments, is configured in a `.env` file which you will need to create. It is not (and should not be) committed to source control. There is also a `COIN_MARKET_CAP_API_KEY` variable that is used by the gas reporter plugin. Set this to an empty string if you don't have a CoinMarketCap API key. 
+[Truffle][truffle] and [Ganache][ganache] are required to compile, test and deploy the smart contracts. In order to connect to the public networks (Ropsten/Mainnet), truffle requires an endpoint of an Ethereum node to connect to in order to send transactions to. This can either be a synced local node (like geth) or more conveniently, an [Infura][infura] node with API key. The `truffle-config.js` is currently configured to connect to Infura but requires an API key in order to connect. This key, as well as the wallet mnemonic used for deployments, is configured in a `.env` file which you will need to create. It is not (and should not be) committed to source control. 
+
+There are 2 additional variables that you can specify:
++ `COIN_MARKET_CAP_API_KEY` - used by the gas reporter plugin to determine average gas costs of each function call based on the tests. Set this to an empty string if you don't have an API key. 
++ `ETHERSCAN_API_KEY` - used by the code verify plugin to verify the contract source code on etherscan. Set this to an empty string if you don't have an API key.
 
 The `.env` file should take the following format:
 ```
@@ -35,7 +39,14 @@ MAINNET_MNEMONIC="YOUR_MAINNET_MNEMONIC"
 ROPSTEN_NODE_URL=https://ropsten.infura.io/v3/<YOUR_API_KEY>
 ROPSTEN_MNEMONIC="YOUR_ROPSTEN_MNEMONIC"
 
+KOVAN_NODE_URL=https://kovan.infura.io/v3/<YOUR_API_KEY>
+KOVAN_MNEMONIC="YOUR_KOVAN_MNEMONIC"
+
+RINKEBY_NODE_URL=https://rinkeby.infura.io/v3/<YOUR_API_KEY>
+RINKEBY_MNEMONIC="YOUR_RINKEBY_MNEMONIC"
+
 COIN_MARKET_CAP_API_KEY="YOUR_COIN_MARKET_CAP_API_KEY"
+ETHERSCAN_API_KEY="YOUR_ETHERSCAN_API_KEY"
 ```
 
 ## Compiling, Deploying and Testing:
